@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "./**/*.{html,ts}";
 
 table,
 th,
@@ -12,5 +13,3 @@ button:hover .icon polygon {
   stroke: #000000 !important;
   /* azul Tailwind: blue-500 */
 }
-
- 
