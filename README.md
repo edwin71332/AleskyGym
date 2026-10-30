@@ -56,31 +56,58 @@ AleskyGym/
 
 #### Prerrequisitos:
 - Java JDK 21
-- MySQL 8.x en ejecución
+- MySQL 8.x en ejecución (vía MySQL Server nativo o XAMPP en puerto 3306)
 - Maven (o utilizar el wrapper `./mvnw` incluido)
 
-#### Instrucciones:
-1. Crear la base de datos e importar el esquema inicial:
-   ```bash
-   mysql -u root -p -e "CREATE DATABASE IF NOT EXISTS gimnasio;"
-   mysql -u root -p gimnasio < Backend/gimnasio.sql
-   ```
-2. Verificar las credenciales de conexión en `Backend/src/main/resources/application.properties`:
-   ```properties
-   spring.datasource.url=jdbc:mysql://localhost:3306/gimnasio?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-   spring.datasource.username=root
-   spring.datasource.password=
-   ```
-3. Ejecutar el servicio desde el directorio `Backend`:
-   ```bash
-   cd Backend
-   ./mvnw spring-boot:run
-   ```
-   *(En Windows PowerShell o CMD, utilizar `.\mvnw.cmd spring-boot:run`)*.
+#### Instrucciones de Configuración y Ejecución:
 
-4. La API quedará operativa en `http://localhost:8080/gimnasio-app` y su documentación interactiva en:
-   - **Swagger UI**: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
-   - **OpenAPI JSON**: [http://localhost:8080/v3/api-docs](http://localhost:8080/v3/api-docs)
+**Paso A: Crear la base de datos e importar el esquema**
+
+* **En Windows (PowerShell):**
+  ```powershell
+  mysql -u root -e "CREATE DATABASE IF NOT EXISTS gimnasio;"
+  Get-Content Backend\gimnasio.sql | mysql -u root gimnasio
+  ```
+  *(Si utilizas XAMPP y `mysql` no se encuentra en el PATH, antepón la ruta: `& "C:\xampp\mysql\bin\mysql.exe"`)*.
+
+* **En Windows (CMD tradicional):**
+  ```cmd
+  mysql -u root -e "CREATE DATABASE IF NOT EXISTS gimnasio;"
+  mysql -u root gimnasio < Backend\gimnasio.sql
+  ```
+
+* **En Linux / macOS (Bash / Zsh):**
+  ```bash
+  mysql -u root -e "CREATE DATABASE IF NOT EXISTS gimnasio;"
+  mysql -u root gimnasio < Backend/gimnasio.sql
+  ```
+
+**Paso B: Verificar credenciales de conexión**
+
+Revisa el archivo `Backend/src/main/resources/application.properties` (por defecto configurado para usuario `root` sin contraseña):
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/gimnasio?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+spring.datasource.username=root
+spring.datasource.password=
+```
+
+**Paso C: Iniciar el servidor Spring Boot**
+
+* **En Windows (PowerShell o CMD):**
+  ```powershell
+  cd Backend
+  .\mvnw.cmd spring-boot:run
+  ```
+
+* **En Linux o macOS:**
+  ```bash
+  cd Backend
+  ./mvnw spring-boot:run
+  ```
+
+La API quedará operativa en `http://localhost:8080/gimnasio-app` y su documentación interactiva en:
+- **Swagger UI**: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+- **OpenAPI JSON**: [http://localhost:8080/v3/api-docs](http://localhost:8080/v3/api-docs)
 
 ---
 

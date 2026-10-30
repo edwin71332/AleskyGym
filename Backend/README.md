@@ -40,10 +40,25 @@ Backend/src/main/java/gn/gimnasio/
 El repositorio incluye el volcado `gimnasio.sql` con el esquema de tablas y datos de prueba.
 
 ### Restauración en MySQL:
-```bash
-mysql -u root -p -e "CREATE DATABASE IF NOT EXISTS gimnasio;"
-mysql -u root -p gimnasio < gimnasio.sql
-```
+
+* **En Windows (PowerShell):**
+  ```powershell
+  mysql -u root -e "CREATE DATABASE IF NOT EXISTS gimnasio;"
+  Get-Content gimnasio.sql | mysql -u root gimnasio
+  ```
+  *(Si utilizas XAMPP y `mysql` no se encuentra en el PATH, antepón la ruta: `& "C:\xampp\mysql\bin\mysql.exe"`)*.
+
+* **En Windows (CMD tradicional):**
+  ```cmd
+  mysql -u root -e "CREATE DATABASE IF NOT EXISTS gimnasio;"
+  mysql -u root gimnasio < gimnasio.sql
+  ```
+
+* **En Linux / macOS (Bash / Zsh):**
+  ```bash
+  mysql -u root -e "CREATE DATABASE IF NOT EXISTS gimnasio;"
+  mysql -u root gimnasio < gimnasio.sql
+  ```
 
 ### Parámetros de conexión (`src/main/resources/application.properties`):
 ```properties
@@ -56,17 +71,17 @@ spring.datasource.password=
 
 ## 🚀 Ejecución del Servicio
 
-### En Windows (PowerShell / CMD):
-```powershell
-cd Backend
-.\mvnw.cmd spring-boot:run
-```
+* **En Windows (PowerShell / CMD):**
+  ```powershell
+  cd Backend
+  .\mvnw.cmd spring-boot:run
+  ```
 
-### En Linux / macOS:
-```bash
-cd Backend
-./mvnw spring-boot:run
-```
+* **En Linux / macOS:**
+  ```bash
+  cd Backend
+  ./mvnw spring-boot:run
+  ```
 
 El servicio se iniciará en el puerto `8080` bajo el contexto `/gimnasio-app`.
 
