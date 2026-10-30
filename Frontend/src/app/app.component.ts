@@ -12,19 +12,13 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, HeaderComponent, panellateralComponent ],
+  imports: [CommonModule, RouterOutlet, HeaderComponent, panellateralComponent],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  template: `
-    <app-instructors-list></app-instructors-list>
-    <app-classes-list></app-classes-list>
-  ` 
-  // Renderiza directamente los componentes de lista en el HTML
+  styleUrls: ['./app.component.css']
 })
 /** Constructor con inyección de dependencias del router.
   * @param router Manejador de navegación de Angular
 **/
 export class AppComponent {
   constructor(public router: Router) { }
-
 }

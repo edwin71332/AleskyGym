@@ -2,11 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
-import { MatInputModule } from '@angular/material/input';
-import { MatIconModule } from '@angular/material/icon';
-import { MatOptionModule } from '@angular/material/core';
 import { Categoria } from '../../interfaces/categoria';
 import { CategoriaServices } from '../../services/categoria.service';
 import { InstructorBasic } from '../../interfaces/instructor';
@@ -21,7 +16,6 @@ import Swal from 'sweetalert2';
   standalone: true,
   imports: [
     ReactiveFormsModule,
-
     CommonModule,
   ],
   templateUrl: './crear-clase.component.html',

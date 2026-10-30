@@ -1,6 +1,6 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": "dist/angular",
+  "outputDirectory": "dist/angular/browser",
   "installCommand": "npm install --legacy-peer-deps",
   "framework": "angular",
   "rewrites": [
