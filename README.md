@@ -70,7 +70,7 @@ AleskyGym/
    ```properties
    spring.datasource.url=jdbc:mysql://localhost:3306/gimnasio?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
    spring.datasource.username=root
-   spring.datasource.password=1234
+   spring.datasource.password=
    ```
 3. Ejecutar el servicio desde el directorio `Backend`:
    ```bash
