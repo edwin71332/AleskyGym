@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 
 
-@CrossOrigin(origins = "https://alesky-gym-rosa.web.app")
 @RestController
 @RequestMapping("/gimnasio-app/inscripcion")
 public class InscripcionControlador {

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "https://alesky-gym-rosa.web.app")
 @RestController
 @RequestMapping("/gimnasio-app/usuarios")
 public class UsuarioControlador {

@@ -7,10 +7,9 @@ Interfaz de usuario desarrollada en **Angular 19** para la administración integ
 ## 🛠️ Tecnologías
 
 - **Framework**: Angular 19 (Standalone Components)
-- **Estilos**: Tailwind CSS 3.4
-- **Componentes de Interfaz**: Angular Material 19
-- **Alertas y Notificaciones**: SweetAlert2
-- **Gestión HTTP y Simulación**: Angular `HttpInterceptorFn` con soporte de persistencia local en `localStorage`
+- **Estilos**: Tailwind CSS 4
+- **Notificaciones**: SweetAlert2
+- **Gestión HTTP y Simulación**: Angular `HttpInterceptorFn` con soporte de persistencia local en `localStorage` (en rama `demo`)
 
 ---
 
