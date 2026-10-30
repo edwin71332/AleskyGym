@@ -12,7 +12,7 @@ La aplicación cliente se encuentra desplegada y disponible para pruebas en Verc
 
 🔗 **Acceso a la Demo**: [https://gimnasio-app-frontend.vercel.app/](https://gimnasio-app-frontend.vercel.app/)
 
-> **Nota**: La demo opera en modo desacoplado mediante un interceptor de mocks en el cliente (`Frontend/src/app/mocks/`), permitiendo explorar la totalidad de los flujos de gestión y reserva con persistencia local en sesión (`localStorage`), sin dependencia de cómputo backend en servidor.
+> **Nota**: La demo opera en modo desacoplado en la rama `demo` mediante un interceptor de mocks en el cliente (`Frontend/src/app/mocks/`), permitiendo explorar la totalidad de los flujos de gestión y reserva con persistencia local en sesión (`localStorage`), sin dependencia de infraestructura backend activa en servidor.
 
 ---
 
@@ -25,7 +25,7 @@ AleskyGym/
 │   ├── gimnasio.sql         # Esquema de base de datos y datos iniciales de prueba
 │   └── pom.xml              # Configuración y dependencias de Maven
 ├── Frontend/                # Aplicación Web en Angular 19
-│   ├── src/                 # Componentes Standalone, Servicios, Mocks
+│   ├── src/                 # Componentes Standalone, Servicios
 │   ├── angular.json         # Configuración del compilador de Angular
 │   └── vercel.json          # Configuración de enrutamiento y despliegue
 └── README.md                # Documentación principal del repositorio
@@ -37,10 +37,9 @@ AleskyGym/
 
 ### Frontend
 - **Framework**: Angular 19 (Arquitectura Standalone Components)
-- **Diseño & Estilos**: Tailwind CSS 3.4
-- **Componentes UI**: Angular Material 19
+- **Diseño & Estilos**: Tailwind CSS 4
 - **Notificaciones**: SweetAlert2
-- **Gestión HTTP / Mocks**: Angular `HttpInterceptorFn` con simulación de latencia de red y persistencia en `localStorage`
+- **Cliente HTTP**: Angular `HttpClient` conectado a la API REST
 
 ### Backend
 - **Lenguaje**: Java 21
@@ -57,31 +56,49 @@ AleskyGym/
 
 #### Prerrequisitos:
 - Java JDK 21
-- MySQL 8.x en ejecución
+- MySQL 8.x en ejecución (vía MySQL Server nativo o XAMPP en puerto 3306)
 - Maven (o utilizar el wrapper `./mvnw` incluido)
 
 #### Instrucciones:
-1. Crear la base de datos e importar el esquema inicial:
-   ```bash
-   mysql -u root -p -e "CREATE DATABASE IF NOT EXISTS gimnasio;"
-   mysql -u root -p gimnasio < Backend/gimnasio.sql
-   ```
-2. Verificar las credenciales de conexión en `Backend/src/main/resources/application.properties`:
-   ```properties
-   spring.datasource.url=jdbc:mysql://localhost:3306/gimnasio?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-   spring.datasource.username=root
-   spring.datasource.password=
-   ```
-3. Ejecutar el servicio desde el directorio `Backend`:
-   ```bash
-   cd Backend
-   ./mvnw spring-boot:run
-   ```
-   *(En Windows PowerShell o CMD, utilizar `.\mvnw.cmd spring-boot:run`)*.
 
-4. La API quedará operativa en `http://localhost:8080/gimnasio-app` y su documentación interactiva en:
-   - **Swagger UI**: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
-   - **OpenAPI JSON**: [http://localhost:8080/v3/api-docs](http://localhost:8080/v3/api-docs)
+**Paso 1: Importar la Base de Datos**
+
+Crea una base de datos llamada `gimnasio` e importa el archivo `Backend/gimnasio.sql`. Puedes realizarlo mediante cualquiera de las siguientes opciones:
+
+* **Vía interfaz gráfica (Recomendado en Windows con XAMPP / Workbench)**:
+  1. Abre tu gestor visual (ej. [http://localhost/phpmyadmin](http://localhost/phpmyadmin)).
+  2. Crea la base de datos `gimnasio`.
+  3. En la pestaña **Importar**, selecciona el archivo `Backend/gimnasio.sql` y ejecuta la importación.
+
+* **Vía terminal (Windows PowerShell con XAMPP)**:
+  ```powershell
+  & "C:\xampp\mysql\bin\mysql.exe" -u root -e "CREATE DATABASE IF NOT EXISTS gimnasio;"
+  Get-Content Backend\gimnasio.sql | & "C:\xampp\mysql\bin\mysql.exe" -u root gimnasio
+  ```
+
+* **Vía terminal (Linux / macOS / MySQL configurado en PATH)**:
+  ```bash
+  mysql -u root -e "CREATE DATABASE IF NOT EXISTS gimnasio;"
+  mysql -u root gimnasio < Backend/gimnasio.sql
+  ```
+
+**Paso 2: Iniciar el servidor Spring Boot**
+
+* **En Windows (PowerShell o CMD):**
+  ```powershell
+  cd Backend
+  .\mvnw.cmd spring-boot:run
+  ```
+
+* **En Linux o macOS:**
+  ```bash
+  cd Backend
+  ./mvnw spring-boot:run
+  ```
+
+La API quedará operativa en `http://localhost:8080/gimnasio-app` y su documentación interactiva en:
+- **Swagger UI**: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+- **OpenAPI JSON**: [http://localhost:8080/v3/api-docs](http://localhost:8080/v3/api-docs)
 
 ---
 

@@ -39,34 +39,40 @@ Backend/src/main/java/gn/gimnasio/
 
 El repositorio incluye el volcado `gimnasio.sql` con el esquema de tablas y datos de prueba.
 
-### Restauración en MySQL:
-```bash
-mysql -u root -p -e "CREATE DATABASE IF NOT EXISTS gimnasio;"
-mysql -u root -p gimnasio < gimnasio.sql
-```
+Crea la base de datos `gimnasio` e importa el esquema inicial mediante cualquiera de las siguientes opciones:
 
-### Parámetros de conexión (`src/main/resources/application.properties`):
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/gimnasio?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-spring.datasource.username=root
-spring.datasource.password=
-```
+* **Vía interfaz gráfica (Recomendado en Windows con XAMPP / Workbench)**:
+  1. Accede a tu gestor (ej. [http://localhost/phpmyadmin](http://localhost/phpmyadmin)).
+  2. Crea la base de datos `gimnasio`.
+  3. En la pestaña **Importar**, selecciona `gimnasio.sql` y confirma la importación.
+
+* **Vía terminal (Windows PowerShell con XAMPP)**:
+  ```powershell
+  & "C:\xampp\mysql\bin\mysql.exe" -u root -e "CREATE DATABASE IF NOT EXISTS gimnasio;"
+  Get-Content gimnasio.sql | & "C:\xampp\mysql\bin\mysql.exe" -u root gimnasio
+  ```
+
+* **Vía terminal (Linux / macOS / MySQL configurado en PATH)**:
+  ```bash
+  mysql -u root -e "CREATE DATABASE IF NOT EXISTS gimnasio;"
+  mysql -u root gimnasio < gimnasio.sql
+  ```
 
 ---
 
 ## 🚀 Ejecución del Servicio
 
-### En Windows (PowerShell / CMD):
-```powershell
-cd Backend
-.\mvnw.cmd spring-boot:run
-```
+* **En Windows (PowerShell / CMD):**
+  ```powershell
+  cd Backend
+  .\mvnw.cmd spring-boot:run
+  ```
 
-### En Linux / macOS:
-```bash
-cd Backend
-./mvnw spring-boot:run
-```
+* **En Linux / macOS:**
+  ```bash
+  cd Backend
+  ./mvnw spring-boot:run
+  ```
 
 El servicio se iniciará en el puerto `8080` bajo el contexto `/gimnasio-app`.
 
