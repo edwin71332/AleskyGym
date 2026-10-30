@@ -19,7 +19,7 @@ La aplicación cliente se encuentra desplegada y disponible para pruebas en Verc
 ## 🏛️ Estructura del Proyecto
 
 ```plaintext
-Gestion-Clases-Gimnasio/
+AleskyGym/
 ├── Backend/                 # API RESTful en Java 21 y Spring Boot 3
 │   ├── src/                 # Controladores, Entidades JPA, Repositorios, Servicios
 │   ├── gimnasio.sql         # Esquema de base de datos y datos iniciales de prueba
