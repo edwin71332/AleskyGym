@@ -25,6 +25,9 @@ Arquitectura orientada a dominios dividida en capas (`Controlador` -> `Servicio`
 Backend/src/main/java/gn/gimnasio/
 ├── categoria/             # Categorías de disciplinas deportivas
 ├── clase/                 # Gestión de clases, horarios y cupos
+├── common/                # Adaptadores y utilidades compartidas
+├── config/                # Configuración global del sistema (CORS)
+├── cronjob/               # Tareas programadas en segundo plano
 ├── especialidad/          # Catálogo de especialidades técnicas
 ├── instructor/            # Administración de instructores
 ├── lincenciaInstructor/   # Gestión de certificaciones y licencias
