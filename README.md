@@ -59,39 +59,30 @@ AleskyGym/
 - MySQL 8.x en ejecución (vía MySQL Server nativo o XAMPP en puerto 3306)
 - Maven (o utilizar el wrapper `./mvnw` incluido)
 
-#### Instrucciones de Configuración y Ejecución:
+#### Instrucciones:
 
-**Paso A: Crear la base de datos e importar el esquema**
+**Paso 1: Importar la Base de Datos**
 
-* **En Windows (PowerShell):**
+Crea una base de datos llamada `gimnasio` e importa el archivo `Backend/gimnasio.sql`. Puedes realizarlo mediante cualquiera de las siguientes opciones:
+
+* **Vía interfaz gráfica (Recomendado en Windows con XAMPP / Workbench)**:
+  1. Abre tu gestor visual (ej. [http://localhost/phpmyadmin](http://localhost/phpmyadmin)).
+  2. Crea la base de datos `gimnasio`.
+  3. En la pestaña **Importar**, selecciona el archivo `Backend/gimnasio.sql` y ejecuta la importación.
+
+* **Vía terminal (Windows PowerShell con XAMPP)**:
   ```powershell
-  mysql -u root -e "CREATE DATABASE IF NOT EXISTS gimnasio;"
-  Get-Content Backend\gimnasio.sql | mysql -u root gimnasio
-  ```
-  *(Si utilizas XAMPP y `mysql` no se encuentra en el PATH, antepón la ruta: `& "C:\xampp\mysql\bin\mysql.exe"`)*.
-
-* **En Windows (CMD tradicional):**
-  ```cmd
-  mysql -u root -e "CREATE DATABASE IF NOT EXISTS gimnasio;"
-  mysql -u root gimnasio < Backend\gimnasio.sql
+  & "C:\xampp\mysql\bin\mysql.exe" -u root -e "CREATE DATABASE IF NOT EXISTS gimnasio;"
+  Get-Content Backend\gimnasio.sql | & "C:\xampp\mysql\bin\mysql.exe" -u root gimnasio
   ```
 
-* **En Linux / macOS (Bash / Zsh):**
+* **Vía terminal (Linux / macOS / MySQL configurado en PATH)**:
   ```bash
   mysql -u root -e "CREATE DATABASE IF NOT EXISTS gimnasio;"
   mysql -u root gimnasio < Backend/gimnasio.sql
   ```
 
-**Paso B: Verificar credenciales de conexión**
-
-Revisa el archivo `Backend/src/main/resources/application.properties` (por defecto configurado para usuario `root` sin contraseña):
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/gimnasio?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-spring.datasource.username=root
-spring.datasource.password=
-```
-
-**Paso C: Iniciar el servidor Spring Boot**
+**Paso 2: Iniciar el servidor Spring Boot**
 
 * **En Windows (PowerShell o CMD):**
   ```powershell

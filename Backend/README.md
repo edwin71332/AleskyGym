@@ -39,33 +39,24 @@ Backend/src/main/java/gn/gimnasio/
 
 El repositorio incluye el volcado `gimnasio.sql` con el esquema de tablas y datos de prueba.
 
-### Restauración en MySQL:
+Crea la base de datos `gimnasio` e importa el esquema inicial mediante cualquiera de las siguientes opciones:
 
-* **En Windows (PowerShell):**
+* **Vía interfaz gráfica (Recomendado en Windows con XAMPP / Workbench)**:
+  1. Accede a tu gestor (ej. [http://localhost/phpmyadmin](http://localhost/phpmyadmin)).
+  2. Crea la base de datos `gimnasio`.
+  3. En la pestaña **Importar**, selecciona `gimnasio.sql` y confirma la importación.
+
+* **Vía terminal (Windows PowerShell con XAMPP)**:
   ```powershell
-  mysql -u root -e "CREATE DATABASE IF NOT EXISTS gimnasio;"
-  Get-Content gimnasio.sql | mysql -u root gimnasio
-  ```
-  *(Si utilizas XAMPP y `mysql` no se encuentra en el PATH, antepón la ruta: `& "C:\xampp\mysql\bin\mysql.exe"`)*.
-
-* **En Windows (CMD tradicional):**
-  ```cmd
-  mysql -u root -e "CREATE DATABASE IF NOT EXISTS gimnasio;"
-  mysql -u root gimnasio < gimnasio.sql
+  & "C:\xampp\mysql\bin\mysql.exe" -u root -e "CREATE DATABASE IF NOT EXISTS gimnasio;"
+  Get-Content gimnasio.sql | & "C:\xampp\mysql\bin\mysql.exe" -u root gimnasio
   ```
 
-* **En Linux / macOS (Bash / Zsh):**
+* **Vía terminal (Linux / macOS / MySQL configurado en PATH)**:
   ```bash
   mysql -u root -e "CREATE DATABASE IF NOT EXISTS gimnasio;"
   mysql -u root gimnasio < gimnasio.sql
   ```
-
-### Parámetros de conexión (`src/main/resources/application.properties`):
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/gimnasio?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-spring.datasource.username=root
-spring.datasource.password=
-```
 
 ---
 
